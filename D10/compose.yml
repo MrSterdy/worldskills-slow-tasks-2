@@ -1,0 +1,32 @@
+networks:
+  back-end:
+    driver: bridge
+
+services:
+  web:
+    build: ./
+    environment:
+      MYSQL_DATABASE: root
+      MYSQL_PASSWORD: root
+      MYSQL_USERNAME: root
+      MYSQL_PORT: 3306
+      MYSQL_HOST: mysql
+    depends_on:
+      - mysql
+    ports:
+      - "5555:80"
+    networks:
+      - back-end
+
+  mysql:
+    image: mysql:8.2.0
+    environment:
+      MYSQL_DATABASE: root
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - back-end
+    volumes:
+      - "wscrop-mysql:/var/lib/mysql"
+
+volumes:
+  wscrop-mysql:

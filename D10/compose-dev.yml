@@ -1,0 +1,13 @@
+services:
+  mysql:
+    image: mysql:8.2.0
+    ports:
+      - "4306:3306"
+    environment:
+      MYSQL_DATABASE: root
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - "wscrop-dev-mysql:/var/lib/mysql"
+
+volumes:
+  wscrop-dev-mysql:
